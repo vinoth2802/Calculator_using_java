@@ -81,26 +81,19 @@ public class CalculatorUI {
     }
 
     public double calculate(double firstNumber, double secondNumber, char operator) {
-        switch (operator) {
-            case '+':
-                return firstNumber + secondNumber;
-            case '-':
-                return firstNumber - secondNumber;
-            case '*':
-                return firstNumber * secondNumber;
-            case '/':
-                return firstNumber / secondNumber;
-            case '%':
-                return firstNumber % secondNumber;
-            case '^':
-                return Math.pow(firstNumber, secondNumber);
-            default:
-                return secondNumber;
-        }
+        return switch (operator) {
+            case '+' -> firstNumber + secondNumber;
+            case '-' -> firstNumber - secondNumber;
+            case '*' -> firstNumber * secondNumber;
+            case '/' -> firstNumber / secondNumber;
+            case '%' -> firstNumber % secondNumber;
+            case '^' -> Math.pow(firstNumber, secondNumber);
+            default -> secondNumber;
+        };
     }
 
     private void initThemeSelector() {
-        comboTheme = createComboBox(themesMap.keySet().toArray(new String[0]), 230, 30, "Theme");
+        comboTheme = createComboBox(themesMap.keySet().toArray(new String[0]), 230, "Theme");
         comboTheme.addItemListener(event -> {
             if (event.getStateChange() != ItemEvent.SELECTED)
                 return;
@@ -124,25 +117,25 @@ public class CalculatorUI {
     }
 
     private void initCalculatorTypeSelector() {
-        comboCalculatorType = createComboBox(new String[]{"Standard", "Scientific"}, 20, 30, "Calculator type");
+        comboCalculatorType = createComboBox(new String[]{"Standard", "Scientific"}, 20, "Calculator type");
         comboCalculatorType.addItemListener(event -> {
             if (event.getStateChange() != ItemEvent.SELECTED)
                 return;
 
             String selectedItem = (String) event.getItem();
             switch (selectedItem) {
-                case "Standard":
+                case "Standard" -> {
                     window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
                     btnRoot.setVisible(false);
                     btnPower.setVisible(false);
                     btnLog.setVisible(false);
-                    break;
-                case "Scientific":
+                }
+                case "Scientific" -> {
                     window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
                     btnRoot.setVisible(true);
                     btnPower.setVisible(true);
                     btnLog.setVisible(true);
-                    break;
+                }
             }
         });
     }
@@ -162,7 +155,7 @@ public class CalculatorUI {
             for (int i = 0; i < (str.length() - 1); i++) {
                 str2.append(str.charAt(i));
             }
-            if (str2.toString().equals("")) {
+            if (str2.toString().isEmpty()) {
                 inputScreen.setText("0");
             } else {
                 inputScreen.setText(str2.toString());
@@ -506,9 +499,9 @@ public class CalculatorUI {
         btnLog.setVisible(false);
     }
 
-    private JComboBox<String> createComboBox(String[] items, int x, int y, String toolTip) {
+    private JComboBox<String> createComboBox(String[] items, int x, String toolTip) {
         JComboBox<String> combo = new JComboBox<>(items);
-        combo.setBounds(x, y, 140, 25);
+        combo.setBounds(x, 30, 140, 25);
         combo.setToolTipText(toolTip);
         combo.setCursor(new Cursor(Cursor.HAND_CURSOR));
         window.add(combo);
