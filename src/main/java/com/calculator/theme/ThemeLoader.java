@@ -1,2 +1,4 @@
-package main.java.com.calculator.theme;public class ThemeLoader {
+package main.java.com.calculator.theme;
+
+public class ThemeLoader {
 }

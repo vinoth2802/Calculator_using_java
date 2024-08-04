@@ -1,2 +1,4 @@
-package main.java.com.calculator;public class App {
+package main.java.com.calculator;
+
+public class App {
 }

@@ -1,2 +1,4 @@
-package main.java.com.calculator.theme;public class ThemeList {
+package main.java.com.calculator.theme;
+
+public class ThemeList {
 }

@@ -1,2 +1,4 @@
-package main.java.com.calculator.util;public class ColorUtil {
+package main.java.com.calculator.util;
+
+public class ColorUtil {
 }
